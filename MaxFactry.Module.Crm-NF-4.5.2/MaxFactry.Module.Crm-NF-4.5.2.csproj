@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{28FC9C95-01C0-4747-ABA7-7CD696E81D6D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MaxFactry.Module.Crm_NF_4._5._2</RootNamespace>
+    <AssemblyName>MaxFactry.Module.Crm-NF-4.5.2</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;net2;net4_52</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;net2;net4_52</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>MaxFactry.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MaxFactry.Base-NF-4.5.2, Version=1.0.2.2, Culture=neutral, PublicKeyToken=fbbc3eafbb4c95f8, processorArchitecture=MSIL">
+      <HintPath>..\..\_nuget\MaxFactry.Base.1.0.2.2\lib\net452\MaxFactry.Base-NF-4.5.2.dll</HintPath>
+    </Reference>
+    <Reference Include="MaxFactry.Core-NF-4.5.2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fbbc3eafbb4c95f8, processorArchitecture=MSIL">
+      <HintPath>..\..\_nuget\MaxFactry.Base.1.0.2.2\lib\net452\MaxFactry.Core-NF-4.5.2.dll</HintPath>
+    </Reference>
+    <Reference Include="MaxFactry.General-NF-4.5.2, Version=1.0.2.2, Culture=neutral, PublicKeyToken=fbbc3eafbb4c95f8, processorArchitecture=MSIL">
+      <HintPath>..\..\_nuget\MaxFactry.General.1.0.2.2\lib\net452\MaxFactry.General-NF-4.5.2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLayer\Entity\MaxCrmAddressEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmCompanyAddressRelationEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmCompanyEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmCompanyLogEntryEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmCompanyPersonRelationEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmGroupEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmGroupPersonRelationEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmInteractionEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmPersonAddressRelationEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmPersonEntity.cs" />
+    <Compile Include="BusinessLayer\Entity\MaxCrmPersonLogEntryEntity.cs" />
+    <Compile Include="BusinessLayer\Library\Interface\IMaxCrmLibraryProvider.cs" />
+    <Compile Include="BusinessLayer\Library\MaxCrmLibrary.cs" />
+    <Compile Include="BusinessLayer\Library\Provider\MaxCrmLibraryDefaultProvider.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmAddressDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmCompanyAddressRelationDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmCompanyDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmCompanyLogEntryDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmCompanyPersonRelationDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmContactInfoDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmGroupDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmGroupPersonRelationDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmInteractionDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmNoteDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmPersonAddressRelationDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmPersonDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmPersonLogEntryDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmReminderDataModel.cs" />
+    <Compile Include="DataLayer\DataModel\MaxCrmTaskDataModel.cs" />
+    <Compile Include="DataLayer\Repository\Interface\IMaxCrmRepositoryProvider.cs" />
+    <Compile Include="DataLayer\Repository\MaxCrmRelationRepository.cs" />
+    <Compile Include="DataLayer\Repository\MaxCrmRepository.cs" />
+    <Compile Include="DataLayer\Repository\Provider\MaxCrmRepositoryProvider.cs" />
+    <Compile Include="MaxStartup.cs" />
+    <Compile Include="PresentationLayer\Models\MaxCrmGroupViewModel.cs" />
+    <Compile Include="PresentationLayer\Models\MaxCrmInteractionViewModel.cs" />
+    <Compile Include="PresentationLayer\Models\MaxCrmPersonViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="MaxFactry.pfx" />
+    <None Include="MaxFactry.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

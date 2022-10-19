@@ -1,0 +1,119 @@
+﻿@model MaxFactry.Module.Crm.PresentationLayer.MaxCrmGroupViewModel
+
+<div>@ViewBag.Message</div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+    
+        if (!String.IsNullOrEmpty(Model.Id))
+        {
+        <fieldset>
+            @Html.HiddenFor(m => m.Id)
+            <legend>Edit Group</legend>
+            @Html.DisplayFor(m => m.Id, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Name, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.GroupType, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Active, additionalViewData: new { LabelColumnWidth = 2, IsCheckBox = "true" })
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="input-group">
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessDelete" onclick="return (confirm('are you sure?'));" class="btn btn-danger">Delete</button>
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCancel" class="btn btn-default">Cancel</button>
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessDone" class="btn btn-default">Done</button>
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessSave" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</fieldset>        
+        }
+
+    }
+
+@using (Html.BeginForm("GroupPerson", "MaxCrmManage", FormMethod.Post, new Dictionary<string, object> { { "role", "form" }, { "class", "form-horizontal" } }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>People</legend>
+        @Html.HiddenFor(m => m.Id)
+        @Html.EditorFor(m => m.PersonId, additionalViewData: new { LabelColumnWidth = 2, InputControl = Html.DropDownListFor(m => m.PersonId, new SelectList(Model.PersonSelectionList, "Id", "NameForList", Model.PersonId), new Dictionary<string, object> { { "class", "form-control" } }) })
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="input-group">
+                        <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCancel" class="btn btn-default">Cancel</button>
+                        <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCreate" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (null != ViewBag.LogInfo)
+        {
+            <pre>@Html.Raw(ViewBag.LogInfo)</pre>
+        }
+        @if (Model.PersonList.Count > 0)
+        {
+            <table class="table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var loModel in Model.PersonList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Edit", "PersonEdit", "MaxCrmManage", new RouteValueDictionary { { "id", loModel.Id } }, new Dictionary<string, object> { { "class", "btn btn-default" }, { "target", "_blank" } })
+
+                            </td>
+                            <td>@loModel.NameForList</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </fieldset>
+}
+
+@using (Html.BeginForm("GroupMessage", "MaxCrmManage", FormMethod.Post, new Dictionary<string, object> { { "role", "form" }, { "class", "form-horizontal" } }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Message</legend>
+        @Html.HiddenFor(m => m.Id)
+        @Html.EditorFor(m => m.From, additionalViewData: new { LabelColumnWidth = 2 })
+        @Html.EditorFor(m => m.Message, additionalViewData: new { LabelColumnWidth = 2 })
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="input-group">
+                        <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCancel" class="btn btn-default">Cancel</button>
+                        <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCreate" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (null != ViewBag.LogInfo)
+        {
+            <pre>@Html.Raw(ViewBag.LogInfo)</pre>
+        }
+    </fieldset>
+}
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.tooltipactive').tooltip({ container: 'body' });
+        });
+    </script>
+
+}

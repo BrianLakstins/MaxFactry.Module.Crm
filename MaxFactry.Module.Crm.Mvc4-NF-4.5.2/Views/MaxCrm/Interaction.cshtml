@@ -1,0 +1,74 @@
+﻿@model MaxFactry.Module.Crm.Mvc4.PresentationLayer.MaxCrmInteractionViewModel
+@section StyleSection
+{
+    <style type="text/css">
+    </style>
+}
+@section ScriptSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.tooltipactive').tooltip({ container: 'body' });
+        });
+    </script>
+}
+
+<h1>Interaction</h1>
+<div>@ViewBag.Message</div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <fieldset>
+            <legend>New Interaction</legend>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="input-group">
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCreate" class="btn btn-primary">New</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>        
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Id))
+    {
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        @Html.HiddenFor(m => Model.Id)
+        <fieldset>
+            <legend>Manage Interaction</legend>
+            @Html.EditorFor(m => m.StartDate, additionalViewData: new { LabelColumnWidth = 2})
+            @Html.EditorFor(m => m.EndDate, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.InteractionType, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Name, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Email, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Phone, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Address1, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Address2, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.City, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.State, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.EquipmentDesired, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Tractor, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.HorsePower, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Acreage, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.TypeOfAcreage, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.HowHeard, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Notes, additionalViewData: new { LabelColumnWidth = 2 })
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="input-group">
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCancel" class="btn btn-default">Cancel</button>
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessSave" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</fieldset>        
+    }
+    }

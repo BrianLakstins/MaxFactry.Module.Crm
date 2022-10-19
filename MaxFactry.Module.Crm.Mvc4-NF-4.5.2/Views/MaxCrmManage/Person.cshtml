@@ -1,0 +1,66 @@
+﻿@model MaxFactry.Module.Crm.PresentationLayer.MaxCrmPersonViewModel
+
+<h1>Person Management</h1>
+<div>@ViewBag.Message</div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <fieldset>
+            <legend>Create Person</legend>
+            @Html.EditorFor(m => m.CurrentFirstName, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.CurrentLastName, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.MainPhone, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.MainEmail, additionalViewData: new { LabelColumnWidth = 2 })
+            @Html.EditorFor(m => m.Active, additionalViewData: new { LabelColumnWidth = 2, IsCheckBox = "true" })
+            <div class="row">
+                <div class="form-Person">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="input-Person">
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCancel" class="btn btn-default">Cancel</button>
+                            <button type="submit" name="uoProcess" value="@MaxManageController.ProcessCreate" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</fieldset>        
+    }
+
+@{
+    var loList = Model.GetSortedList();
+    if (loList.Count > 0)
+    {
+    <table class="table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Is Active?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loView in loList)
+            {
+                <tr>
+                    <td>@Html.ActionLink("Edit", "PersonEdit", "MaxCrmManage", new RouteValueDictionary { { "id", loView.Id } }, new Dictionary<string, object> { { "class", "btn btn-default" } })</td>
+                    <td>@loView.CurrentFirstName @loView.CurrentLastName</td>
+                    <td>@loView.MainEmail</td>
+                    <td>@loView.MainPhone</td>
+                    <td>@loView.Active</td>
+                </tr>
+            }
+        </tbody>
+    </table>    
+}
+}
+@section ScriptSection
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.tooltipactive').tooltip({ container: 'body' });
+        });
+    </script>
+
+}
