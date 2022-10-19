@@ -1,0 +1,1 @@
+﻿MaxFactry CRM Module contains libraries to support Customer Relation Management.
